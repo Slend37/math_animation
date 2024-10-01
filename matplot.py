@@ -17,20 +17,17 @@ def hand_import():
         'Сидоров':[50,80,90,100,89,92,91,90,66,65,74],
     }
 
-    titles = []
-
     # Обработка данных в виде таблицы (на всякий случай)
     imp = pd.DataFrame({})
     for i in players:
         imp.insert(0,i,players[i])
-    return players, titles
+    return players
 
 # Для импорта данных из таблицы excel
 def excel_import():
     players = {} # Пустой список для внесения туда игроков
     imp = pd.read_excel("") # Путь к таблице excel
     imp = pd.DataFrame(imp)
-    titles = [] 
 
     # Добавление данных из таблицы с помощью цикла
     for i in range(imp.shape[0]): # Добавление строк
@@ -41,16 +38,11 @@ def excel_import():
             except:
                 add_list.append(0)
             players[imp.at[i,imp.columns.tolist()[0]]] = add_list # Добавляем в словарь Имя Игрока и по очередно вносим столбцы из вспомогательного листа
-
-    for i in range(1,imp.shape[1]):
-        titles.append(imp.columns.tolist()[i])
-
-    return players, titles
+    return players
 
 # Выбор метода импорта
-players, titles = hand_import()
+players = hand_import()
 #players, titles = excel_import()
-print(titles)
 # Работа с необходимыми листами
 for i in range(len(players)):
     last.append(1) # Заполнение начальным значением
@@ -61,8 +53,6 @@ for i in range(len(players)):
 last = np.array(last)
 x = np.array(x)
 data = np.array(data)
-
-
 
 # Создание стадий. Преобразование данных в другой формат
 stages = []
