@@ -42,7 +42,7 @@ def excel_import():
 
 # Выбор метода импорта
 players = hand_import()
-#players, titles = excel_import()
+#players = excel_import()
 # Работа с необходимыми листами
 for i in range(len(players)):
     last.append(1) # Заполнение начальным значением
